@@ -4,13 +4,20 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 public class MainActivity extends Activity {
+  private ListView snippetListView;
+  private SnippetAdapter snippetAdapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    
+    snippetListView = (ListView) findViewById(R.id.snippet_list);
+    snippetAdapter = new SnippetAdapter(this);
+    snippetListView.setAdapter(snippetAdapter);
   }
 
 
