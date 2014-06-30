@@ -1,4 +1,4 @@
 snippets
 ========
 
-Records and links snippets of your life.
+Records and links memory snippets.
