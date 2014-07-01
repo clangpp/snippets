@@ -8,9 +8,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.clangpp.snippets.MainActivity" >
 
+    <EditText
+        android:id="@+id/quick_snippet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/quick_snippet_hint"
+        android:inputType="textMultiLine" />
+
     <ListView
         android:id="@+id/snippet_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/quick_snippet" />
 
 </RelativeLayout>
