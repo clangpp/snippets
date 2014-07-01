@@ -3,6 +3,5 @@
 
     <string name="app_name">Snippets</string>
     <string name="action_settings">Settings</string>
-    <string name="quick_snippet_hint">Write new snippet here.</string>
 
 </resources>
