@@ -1,5 +1,7 @@
 package com.clangpp.snippets;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,17 +11,19 @@ import android.widget.ListView;
 public class MainActivity extends Activity {
   private ListView snippetListView;
   private SnippetAdapter snippetAdapter;
+  private SnippetService snippetService;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    
+
     snippetListView = (ListView) findViewById(R.id.snippet_list);
     snippetAdapter = new SnippetAdapter(this);
     snippetListView.setAdapter(snippetAdapter);
+    snippetService = SnippetServiceFactory.getSnippetService();
+    listSnippetAsync();
   }
-
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,6 +43,20 @@ public class MainActivity extends Activity {
       return true;
     }
     return super.onOptionsItemSelected(item);
+  }
+
+  public void listSnippetAsync() {
+    snippetListView.setEnabled(false);
+    new SnippetTopicRetriever(snippetService, "")
+        .retrieve(new SnippetTopicRetriever.RetrieveCompleteCallback() {
+
+          @Override
+          public void onRetrieveComplete(List<String> snippetIdList) {
+            snippetAdapter.setSnippetIdList(snippetIdList);
+            snippetListView.setEnabled(true);
+            snippetAdapter.notifyDataSetChanged();
+          }
+        });
   }
 
 }

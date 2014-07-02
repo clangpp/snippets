@@ -1,5 +1,8 @@
 package com.clangpp.snippets;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,14 +11,19 @@ import android.widget.TextView;
 
 public class SnippetAdapter extends BaseAdapter {
   private Context context;
+  private List<String> snippetIdList = new ArrayList<String>();
 
-  public SnippetAdapter(Context c) {
-    context = c;
+  public SnippetAdapter(Context context) {
+    this.context = context;
+  }
+  
+  public void setSnippetIdList(List<String> snippetIdList) {
+    this.snippetIdList = snippetIdList;
   }
 
   @Override
   public int getCount() {
-    return 50; // TODO(clangpp): Use real data.
+    return snippetIdList.size();
   }
 
   @Override
@@ -37,7 +45,7 @@ public class SnippetAdapter extends BaseAdapter {
       textView = (TextView) convertView;
       textView.setText("");
     }
-    textView.setText("placeholder " + position); // TODO(clangpp): Use real data.
+    textView.setText(snippetIdList.get(position));
     return textView;
   }
 
