@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-public class MainActivity extends Activity {
+public class ListSnippetActivity extends Activity {
   private ListView snippetListView;
   private SnippetAdapter snippetAdapter;
   private SnippetService snippetService;
@@ -16,7 +16,7 @@ public class MainActivity extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_list_snippet);
 
     snippetListView = (ListView) findViewById(R.id.snippet_list);
     snippetService = SnippetServiceFactory.getSnippetService();
