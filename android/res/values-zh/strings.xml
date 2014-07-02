@@ -2,5 +2,6 @@
 <resources>
 
     <string name="app_name">只言片语</string>
+    <string name="edit_snippet_hint">写下只言片语……</string>
 
 </resources>
