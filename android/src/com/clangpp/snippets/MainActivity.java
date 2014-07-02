@@ -19,9 +19,9 @@ public class MainActivity extends Activity {
     setContentView(R.layout.activity_main);
 
     snippetListView = (ListView) findViewById(R.id.snippet_list);
-    snippetAdapter = new SnippetAdapter(this);
-    snippetListView.setAdapter(snippetAdapter);
     snippetService = SnippetServiceFactory.getSnippetService();
+    snippetAdapter = new SnippetAdapter(this, snippetService);
+    snippetListView.setAdapter(snippetAdapter);
     listSnippetAsync();
   }
 
