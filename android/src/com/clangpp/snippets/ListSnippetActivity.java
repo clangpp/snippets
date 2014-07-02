@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 public class ListSnippetActivity extends Activity {
-  private ListView snippetListView;
+  private ListView snippetList;
   private SnippetAdapter snippetAdapter;
   private SnippetService snippetService;
   private String topic = "";
@@ -21,10 +21,10 @@ public class ListSnippetActivity extends Activity {
 
     // TODO(ytzhang): Read topic from intent if provided.
 
-    snippetListView = (ListView) findViewById(R.id.snippet_list);
+    snippetList = (ListView) findViewById(R.id.snippet_list);
     snippetService = SnippetServiceFactory.getSnippetService();
     snippetAdapter = new SnippetAdapter(this, snippetService);
-    snippetListView.setAdapter(snippetAdapter);
+    snippetList.setAdapter(snippetAdapter);
     listSnippetAsync();
   }
 
@@ -49,14 +49,14 @@ public class ListSnippetActivity extends Activity {
   }
 
   public void listSnippetAsync() {
-    snippetListView.setEnabled(false);
+    snippetList.setEnabled(false);
     new SnippetTopicRetriever(snippetService, topic)
         .retrieve(new SnippetTopicRetriever.RetrieveCompleteCallback() {
 
           @Override
           public void onRetrieveComplete(List<String> snippetIdList) {
             snippetAdapter.setSnippetIdList(snippetIdList);
-            snippetListView.setEnabled(true);
+            snippetList.setEnabled(true);
             snippetAdapter.notifyDataSetChanged();
           }
         });
