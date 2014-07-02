@@ -12,11 +12,14 @@ public class ListSnippetActivity extends Activity {
   private ListView snippetListView;
   private SnippetAdapter snippetAdapter;
   private SnippetService snippetService;
+  private String topic = "";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_list_snippet);
+
+    // TODO(ytzhang): Read topic from intent if provided.
 
     snippetListView = (ListView) findViewById(R.id.snippet_list);
     snippetService = SnippetServiceFactory.getSnippetService();
@@ -47,7 +50,7 @@ public class ListSnippetActivity extends Activity {
 
   public void listSnippetAsync() {
     snippetListView.setEnabled(false);
-    new SnippetTopicRetriever(snippetService, "")
+    new SnippetTopicRetriever(snippetService, topic)
         .retrieve(new SnippetTopicRetriever.RetrieveCompleteCallback() {
 
           @Override
