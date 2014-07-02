@@ -5,7 +5,7 @@ package com.clangpp.snippets;
  */
 public class Snippet {
   /**
-   * A simple builder for class Snippet. 
+   * A simple builder for class Snippet.
    * NOTE: Please keep sync with class Snippet fields.
    */
   public static class Builder {
@@ -16,7 +16,7 @@ public class Snippet {
       snippet.setTimestamp(System.currentTimeMillis());
       // TODO(clangpp): Consider proper default values for content and id.
     }
-    
+
     public Builder(Snippet snippet) {
       this.snippet = new Snippet();
       this.snippet.setContent(snippet.getContent());
@@ -52,7 +52,7 @@ public class Snippet {
 
   // Snippet ID.
   private String id;
-  
+
   // NOTE: User should use Snippet.newBuilder() to generate Snippet instance.
   // NOTE: Private default constructor for Builder only.
   private Snippet() {
@@ -85,7 +85,7 @@ public class Snippet {
   public static Builder newBuilder() {
     return new Builder();
   }
-  
+
   public static Builder newBuilder(Snippet snippet) {
     return new Builder(snippet);
   }

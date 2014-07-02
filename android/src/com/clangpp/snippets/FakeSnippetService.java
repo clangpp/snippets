@@ -9,7 +9,7 @@ public class FakeSnippetService implements SnippetService {
   private final int NUM_SNIPPETS = 20;
   private final List<String> snippetIds = new ArrayList<String>();
   private final Map<String, Snippet> snippets = new HashMap<String, Snippet>();
-  
+
   public FakeSnippetService() {
     for (int i = 0; i < NUM_SNIPPETS; ++i) {
       String fakeId = "fakeId$" + i;
