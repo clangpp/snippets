@@ -1,7 +1,7 @@
 package com.clangpp.snippets;
 
 public class SnippetServiceFactory {
-  public SnippetService getSnippetService() {
+  public static SnippetService getSnippetService() {
     return new FakeSnippetService();
   }
 
