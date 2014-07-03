@@ -24,6 +24,7 @@ public class Snippet {
 
     public Builder() {
       this(new Snippet());
+      setTimestamp(System.currentTimeMillis());
     }
 
     public Builder setContent(String content) {
