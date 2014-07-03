@@ -1,6 +1,5 @@
 package com.clangpp.snippets;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -62,14 +61,12 @@ public class EditSnippetActivity extends Activity {
     saveSnippet();
   }
 
-  @SuppressLint("SimpleDateFormat")
   void showSnippet() {
     snippetContent.setText(snippet.getContent());
     snippetTimestamp.setText(
         Snippet.newTimestampFormat().format(snippet.getTimestamp()));
   }
 
-  @SuppressLint("SimpleDateFormat")
   void saveSnippet() {
     Snippet.Builder snippetBuilder = Snippet.newBuilder(snippet);
     snippetBuilder.setContent(snippetContent.getText().toString());
