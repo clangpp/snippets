@@ -11,11 +11,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class EditSnippetActivity extends Activity {
+  private static final String TAG = EditSnippetActivity.class.getName();
+  private static final String TIMESTAMP_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS ZZZZZ";
+
   private EditText snippetContent;
   private TextView snippetTimestamp;
   private Snippet snippet;
-  private static final String TIMESTAMP_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS ZZZZZ";
-  private static final String TAG = EditSnippetActivity.class.getName();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
