@@ -21,7 +21,7 @@ public class SnippetAdapter extends BaseAdapter {
 
     @Override
     protected Snippet doInBackground(Void... params) {
-      return snippetService.getSnippet(snippetId);
+      return cachedSnippetService.getSnippet(snippetId);
     }
 
     @Override
@@ -31,12 +31,12 @@ public class SnippetAdapter extends BaseAdapter {
   }
 
   private Context context;
-  private SnippetService snippetService;
+  private CachedSnippetService cachedSnippetService;
   private List<String> snippetIdList = new ArrayList<String>();
 
-  public SnippetAdapter(Context context, SnippetService snippetService) {
+  public SnippetAdapter(Context context, CachedSnippetService cachedSnippetService) {
     this.context = context;
-    this.snippetService = snippetService;
+    this.cachedSnippetService = cachedSnippetService;
   }
 
   public void setSnippetIdList(List<String> snippetIdList) {
@@ -72,7 +72,7 @@ public class SnippetAdapter extends BaseAdapter {
     }
 
     String snippetId = snippetIdList.get(position);
-    Snippet snippet = snippetService.tryGetSnippet(snippetId);
+    Snippet snippet = cachedSnippetService.tryGetSnippet(snippetId);
     if (snippet != null) {
       textView.setText(snippet.getContent() + "\n--"
           + new Date(snippet.getTimestamp()));

@@ -14,15 +14,6 @@ public interface SnippetService {
   Snippet getSnippet(String snippetId);
 
   /**
-   * Tries to retrieve snippet by given snippet ID, should return immediately.
-   * 
-   * @param snippetId
-   *          The ID of a snippet.
-   * @return The snippet. null if not found immediately.
-   */
-  Snippet tryGetSnippet(String snippetId);
-
-  /**
    * Retrieves all snippets with the same topic.
    * 
    * @param topic

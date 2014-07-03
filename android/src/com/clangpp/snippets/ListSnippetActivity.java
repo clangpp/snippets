@@ -11,7 +11,7 @@ import android.widget.ListView;
 public class ListSnippetActivity extends Activity {
   private ListView snippetList;
   private SnippetAdapter snippetAdapter;
-  private SnippetService snippetService;
+  private CachedSnippetService cachedSnippetService;
   private String topic = "";
 
   @Override
@@ -22,8 +22,8 @@ public class ListSnippetActivity extends Activity {
     // TODO(ytzhang): Read topic from intent if provided.
 
     snippetList = (ListView) findViewById(R.id.snippet_list);
-    snippetService = SnippetServiceFactory.getSingletonCachedSnippetService();
-    snippetAdapter = new SnippetAdapter(this, snippetService);
+    cachedSnippetService = SnippetServiceFactory.getSingletonCachedSnippetService();
+    snippetAdapter = new SnippetAdapter(this, cachedSnippetService);
     snippetList.setAdapter(snippetAdapter);
     listSnippetAsync();
   }
@@ -50,7 +50,7 @@ public class ListSnippetActivity extends Activity {
 
   public void listSnippetAsync() {
     snippetList.setEnabled(false);
-    new SnippetTopicRetriever(snippetService, topic)
+    new SnippetTopicRetriever(cachedSnippetService, topic)
         .retrieve(new SnippetTopicRetriever.RetrieveCompleteCallback() {
 
           @Override
