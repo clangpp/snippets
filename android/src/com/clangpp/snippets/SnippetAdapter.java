@@ -1,7 +1,6 @@
 package com.clangpp.snippets;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import android.content.Context;
@@ -74,8 +73,8 @@ public class SnippetAdapter extends BaseAdapter {
     String snippetId = snippetIdList.get(position);
     Snippet snippet = cachedSnippetService.tryGetSnippet(snippetId);
     if (snippet != null) {
-      textView.setText(snippet.getContent() + "\n--"
-          + new Date(snippet.getTimestamp()));
+      textView.setText(snippet.getContent() + "\n-- "
+          + Snippet.newTimestampFormat().format(snippet.getTimestamp()));
     } else {
       new RetrieveSnippetAsyncTask(snippetId).execute();
     }

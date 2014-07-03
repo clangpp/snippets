@@ -1,5 +1,12 @@
 package com.clangpp.snippets;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import android.annotation.SuppressLint;
+import android.util.Log;
+
 /**
  * Snippet data structure.
  */
@@ -53,6 +60,29 @@ public class Snippet {
     }
   }
 
+  public static class TimestampFormat {
+    private static final String TAG = TimestampFormat.class.getName();
+    public static final String TIMESTAMP_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS ZZZZZ";
+
+    @SuppressLint("SimpleDateFormat")
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(TIMESTAMP_FORMAT);
+
+    public String format(long timestamp) {
+      return simpleDateFormat.format(new Date(timestamp));
+    }
+
+    // Returns 0 if parse failed.
+    public long parse(String timestamp) {
+      try {
+        return simpleDateFormat.parse(timestamp).getTime();
+      } catch (ParseException e) {
+        Log.e(TAG, "Fail to parse timestamp '" + timestamp + "'", e);
+        return 0;
+      }
+
+    }
+  }
+
   // Snippet content.
   private String content;
 
@@ -85,6 +115,10 @@ public class Snippet {
 
   public static Builder newBuilder(Snippet snippet) {
     return new Builder(snippet);
+  }
+
+  public static TimestampFormat newTimestampFormat() {
+    return new TimestampFormat();
   }
 
 }
