@@ -34,6 +34,11 @@ public class CachedServiceDecorator extends SnippetServiceDecorator {
   }
 
   @Override
+  public Snippet tryGetSnippet(String snippetId) {
+    return snippetCache.get(snippetId);
+  }
+
+  @Override
   public List<String> listSnippet(String topic) {
     return snippetService.listSnippet(topic);
   }
