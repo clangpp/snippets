@@ -7,18 +7,16 @@ import android.util.LruCache;
 public class CachedServiceDecorator extends SnippetServiceDecorator {
   public static final int DEFAULT_CACHE_SIZE_IN_BYTES = 10 * 1024 * 1024;  // 10 MB
 
-  private int cacheSizeInBytes;
-  private final LruCache<String, Snippet> snippetCache =
-      new LruCache<String, Snippet>(cacheSizeInBytes) {
-    protected int sizeOf(String key, Snippet value) {
-      return value.getContent().length();
-    }
-  };
+  private LruCache<String, Snippet> snippetCache;
 
   public CachedServiceDecorator(SnippetService snippetService,
       int cacheSizeInBytes) {
     super(snippetService);
-    this.cacheSizeInBytes = cacheSizeInBytes;
+    snippetCache = new LruCache<String, Snippet>(cacheSizeInBytes) {
+      protected int sizeOf(String key, Snippet value) {
+        return value.getContent().length();
+      }
+    };
   }
 
   public CachedServiceDecorator(SnippetService snippetService) {
