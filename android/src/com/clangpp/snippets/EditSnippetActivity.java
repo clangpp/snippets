@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -69,6 +70,7 @@ public class EditSnippetActivity extends Activity {
     saveSnippet();
   }
 
+  @SuppressLint("SimpleDateFormat")
   void showSnippet() {
     snippetContent.setText(snippet.getContent());
 
@@ -76,6 +78,7 @@ public class EditSnippetActivity extends Activity {
     snippetTimestamp.setText(sdf.format(new Date(snippet.getTimestamp())));
   }
 
+  @SuppressLint("SimpleDateFormat")
   void saveSnippet() {
     Snippet.Builder snippetBuilder = Snippet.newBuilder(snippet);
 
