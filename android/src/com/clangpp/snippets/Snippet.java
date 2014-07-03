@@ -6,25 +6,30 @@ package com.clangpp.snippets;
 public class Snippet {
   /**
    * A simple builder for class Snippet.
+   * NOTE: No field of built Snippet shall be null.
    * NOTE: Please keep sync with class Snippet fields.
    */
   public static class Builder {
+    public static final String EMPTY_CONTENT = "";
+    public static final String EMPTY_ID = "";
+    
     private final Snippet snippet;
-
-    public Builder() {
-      snippet = new Snippet();
-      snippet.setTimestamp(System.currentTimeMillis());
-      // TODO(clangpp): Consider proper default values for content and id.
-    }
 
     public Builder(Snippet snippet) {
       this.snippet = new Snippet();
-      this.snippet.setContent(snippet.getContent());
-      this.snippet.setTimestamp(snippet.getTimestamp());
-      this.snippet.setId(snippet.getId());
+      setContent(snippet.getContent());
+      setTimestamp(snippet.getTimestamp());
+      setId(snippet.getId());
+    }
+
+    public Builder() {
+      this(new Snippet());
     }
 
     public Builder setContent(String content) {
+      if (content == null) {
+        content = EMPTY_CONTENT;
+      }
       snippet.content = content;
       return this;
     }
@@ -35,6 +40,9 @@ public class Snippet {
     }
 
     public Builder setId(String id) {
+      if (id == null) {
+        id = EMPTY_ID;
+      }
       snippet.id = id;
       return this;
     }
@@ -62,24 +70,12 @@ public class Snippet {
     return content;
   }
 
-  public void setContent(String content) {
-    this.content = content;
-  }
-
   public long getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(long timestamp) {
-    this.timestamp = timestamp;
-  }
-
   public String getId() {
     return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
   }
 
   public static Builder newBuilder() {

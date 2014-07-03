@@ -26,38 +26,42 @@ public class EditSnippetActivity extends Activity {
     snippetTimestamp = (TextView) findViewById(R.id.snippet_timestamp);
 
     snippet = Snippet.newBuilder().build();
-    showSnippet(snippet);
+    showSnippet();
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    showSnippet(snippet);
+    showSnippet();
   }
 
   @Override
   protected void onPause() {
     super.onPause();
-    saveSnippet(snippet);
+    saveSnippet();
   }
 
-  void showSnippet(final Snippet snippet) {
+  void showSnippet() {
     snippetContent.setText(snippet.getContent());
 
     SimpleDateFormat sdf = new SimpleDateFormat(TIMESTAMP_FORMAT);
     snippetTimestamp.setText(sdf.format(new Date(snippet.getTimestamp())));
   }
 
-  void saveSnippet(Snippet snippet) {
-    snippet.setContent(snippetContent.getText().toString());
+  void saveSnippet() {
+    Snippet.Builder snippetBuilder = Snippet.newBuilder(snippet);
+    
+    snippetBuilder.setContent(snippetContent.getText().toString());
 
     SimpleDateFormat sdf = new SimpleDateFormat(TIMESTAMP_FORMAT);
     Date date;
     try {
       date = sdf.parse(snippetTimestamp.getText().toString());
-      snippet.setTimestamp(date.getTime());
+      snippetBuilder.setTimestamp(date.getTime());
     } catch (ParseException e) {
       Log.e(TAG, "Parse failed", e);
     }
+    
+    snippet = snippetBuilder.build();
   }
 }
