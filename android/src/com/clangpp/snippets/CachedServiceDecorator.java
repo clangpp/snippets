@@ -7,7 +7,7 @@ import android.util.LruCache;
 public class CachedServiceDecorator
     extends SnippetServiceDecorator
     implements CachedSnippetService {
-  public static final int DEFAULT_CACHE_SIZE_IN_BYTES = 10 * 1024 * 1024;  // 10 MB
+  public static final int DEFAULT_CACHE_SIZE_IN_BYTES = 4 * 1024 * 1024;  // 4MB
 
   private LruCache<String, Snippet> snippetCache;
 
