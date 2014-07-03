@@ -21,8 +21,8 @@ public class FakeSnippetService implements SnippetService {
   }
 
   @Override
-  public Snippet getSnippet(String id) {
-    return snippets.get(id);
+  public Snippet getSnippet(String snippetId) {
+    return snippets.get(snippetId);
   }
 
   @Override

@@ -7,11 +7,11 @@ public interface SnippetService {
   /**
    * Retrieves snippet by given snippet ID.
    * 
-   * @param id
+   * @param snippetId
    *            The ID of a snippet.
    * @return The snippet. null if not found.
    */
-  Snippet getSnippet(String id);
+  Snippet getSnippet(String snippetId);
 
   /**
    * Retrieves all snippets with the same topic.
