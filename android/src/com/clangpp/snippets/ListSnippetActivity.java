@@ -22,7 +22,7 @@ public class ListSnippetActivity extends Activity {
     // TODO(ytzhang): Read topic from intent if provided.
 
     snippetList = (ListView) findViewById(R.id.snippet_list);
-    snippetService = SnippetServiceFactory.getSnippetService();
+    snippetService = SnippetServiceFactory.getSingletonCachedSnippetService();
     snippetAdapter = new SnippetAdapter(this, snippetService);
     snippetList.setAdapter(snippetAdapter);
     listSnippetAsync();
